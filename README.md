@@ -16,7 +16,7 @@ This bias may prevent Twitter users from non-western countries not being able to
 
 This bias also unintentionally punishes businesses and individuals who use non-latin based text by reducing their visibility compared to latin based text users. This may have significant economic repurcussions when considered at scale (across entire Twitter user-base across many months & years).\
 
-![Example of bias](http://lmsotfy.com/so.png)
+![Example of bias](https://github.com/shyamvalsan/image-crop-analysis/blob/main/data/Example.png)
 
 In this real world image (photo from Eastern India) you can see a street lined with shops. The name board on the right is for a bank (Vijaya Bank) and is written in Bengali (7th most spoken language in the world with 300 million+ speakers) and the one on the left is for a travel company (Cox&Kings) and is written in English and partially obstructued by a tree. The analysis (dot is marked at the point the Twitter algorithm considers to be salient and crop will focus on this region) clearly shows that all salient points are detected on the English text and none for the Bengali boarding.
 
