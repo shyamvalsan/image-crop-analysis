@@ -1,13 +1,30 @@
 # Linguistic bias against non-latin languages in Twitter's image cropping model
 
-[![Open All Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/twitter-research/image-crop-analysis) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/twitter-research/image-crop-analysis/HEAD)
+This is a repo that contains Twitter's Image Crop Analysis model and the data and code that shows how it is biased against text written in non-latin alphabet based languages. 
 
-![How does a saliency algorithm work](https://cdn.cms-twdigitalassets.com/content/dam/blog-twitter/engineering/en_us/insights/2021/imagecropping/newimagecropanimations.gif)
+The premise of this analysis is that Twitter's image cropping model is unintentionally biased in favor of text written in the latin alphabet (specifically English, but also other latin scripts such as French). Considering that the majority of humans today speak (as their native language) a non-English and specifically non-latin script based language this unintentional bias could have far reaching impacts. 
 
-This is a repo for the code used for reproducing our [Image Crop Analysis paper](https://arxiv.org/abs/2105.08667) as shared on [our blog post](https://blog.twitter.com/engineering/en_us/topics/insights/2021/sharing-learnings-about-our-image-cropping-algorithm.html). 
+In this analysis, we highlight bias against some of the most widely used non-latin languages such as:
+- Chinese (1 billion+ speakers)
+- Hindi (350 million+ speakers)
+- Bengali (300 million+ speakers)
+- Arabic (250 million+ speakers)
 
-If you plan to use this code please cite our paper as follows:
+This bias has the primary effect of unintentionally under representing users from non-western countries who do not use languages written in the latin script. Chinese and Arabic speakers are the obvious examples here, India - which traditionally has had a majority of english speaking Internet users is now shifting to native languages for Internet usage with the advent of inexpensive wireless internet and smartphones. This trend could be replicated in other countries as well.
 
+This bias may prevent Twitter users from non-western countries not being able to see the relevant information in Twitter image previews and also in many cases could highlight a section of the image that the poster did not intend to highlight. Considering Twitter's use in many countries as a real time tool that helps people organize in a democratic manner unimpeded by political crackdowns, the lack of access to relevant information at the right time could have serious consequences. 
+
+This bias also unintentionally punishes businesses and individuals who use non-latin based text by reducing their visibility compared to latin based text users. This may have significant economic repurcussions when considered at scale (across entire Twitter user-base across many months & years).
+
+
+# Instructions
+
+- Open the notebook file in notebooks in Google colab
+- Run the notebook and study the results with accompanying text to illustrate the bias mentioned above
+- If you want to experiment with your own data please upload any additional images with `*.jpg` extension in DATA_DIR, which is `./data`
+
+
+Citation for Twitter Image Crop Analysis Mode: 
 ```
 @ARTICLE{TwitterImageCrop2021,
        author = {{Yee}, Kyra and {Tantipongpipat}, Uthaipon and {Mishra}, Shubhanshu},
@@ -23,56 +40,3 @@ archivePrefix = {arXiv},
  primaryClass = {cs.CY},
 }
 ```
-
-![Analysis of demographic bias of the image cropping algorithm](./notebooks/wiki_no_scaling_intersect_n=10000.jpg)
-
-
-# Instructions
-
-- Install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/products/individual) and then follow these steps:
-  * create a conda environment using `conda env create -f environment.yml`
-  * activate the environment using `conda activate image-crop-analysis`
-- Put a dummy jpeg image at `data/dummy.jpeg`
-- Put any additional images with `*.jpeg` extension in DATA_DIR, which is `./data`
-- If you just want to investigate how the model predicts the saliency map then you can use the notebook [notebooks/Image Annotation Dash.ipynb](notebooks/Image%20Annotation%20Dash.ipynb)
-- To reproduce the analysis first prepare the data using [notebooks/Data Preparation.ipynb](notebooks/Data%20Preparation.ipynb) and then run [notebooks/Demographic Bias Analysis.ipynb](notebooks/Demographic%20Bias%20Analysis.ipynb)
-- To reproduce the plots first run [notebooks/Demographic Bias Plots.ipynb](notebooks/Demographic%20Bias%20Plots.ipynb)
-- If you want to explore how the library behind the dashboard works see [notebooks/Image Crop Analysis.ipynb](notebooks/Image%20Crop%20Analysis.ipynb)
-- If you have the dataset prepared from the above steps then you can create the gender gaze dataset by running [notebooks/Gender Gaze Analysis.ipynb](notebooks/Gender%20Gaze%20Analysis.ipynb)
-
-
-## Docker Run
-
-* Install docker 
-* Run the following commands in this root directory of this project:
-
-```bash
-docker build -t "image_crop" -f docker/Dockerfile .
-docker run -p 9000:9000 -p 8900:8900 -it image_crop
-```
-* Open the jupyter lab URL shown in terminal. 
-
-## Run on Google Colab
-
-[![Open All Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/twitter-research/image-crop-analysis)
-
-
-* Open a google colab notebook
-* Run the following code in the cell where `HOME_DIR` variable is set:
-
-```
-try:
-    import google.colab
-    ! pip install pandas scikit-learn scikit-image statsmodels requests dash
-    ! [[ -d image-crop-analysis ]] || git clone https://github.com/twitter-research/image-crop-analysis.git
-    HOME_DIR = Path("./image_crop_analysis").expanduser()
-    IN_COLAB = True
-except:
-    IN_COLAB = False
-```
-* Try the [notebooks/Image Crop Analysis.ipynb](https://github.com/twitter-research/image-crop-analysis/blob/main/notebooks/Image%20Crop%20Analysis.ipynb) notebook for example. 
-
-
-# Security Issues?
-
-Please report sensitive security issues via Twitter's bug-bounty program (https://hackerone.com/twitter) rather than GitHub.
