@@ -20,12 +20,24 @@ This bias also unintentionally punishes businesses and individuals who use non-l
 
 In this real world image (photo from Eastern India) you can see a street lined with shops. The name board on the right is for a bank (Vijaya Bank) and is written in Bengali (7th most spoken language in the world with 300 million+ speakers) and the one on the left is for a travel company (Cox&Kings) and is written in English and partially obstructued by a tree. The analysis (dot is marked at the point the Twitter algorithm considers to be salient and crop will focus on this region) clearly shows that all salient points are detected on the English text and none for the Bengali boarding.
 
+![Live example of bias](https://github.com/shyamvalsan/image-crop-analysis/blob/main/data/a86f263b-f407-4c3a-8d2d-650f480fe8f1.jpg)
+![Original image](https://github.com/shyamvalsan/image-crop-analysis/blob/main/data/test.jpg)
+
+In this real world example, which can also be observed here https://twitter.com/tstrrman/status/1423007506251530245?s=20 when this tweet is viewed from a mobile device (in this case a Google Pixel 4a) the portion of the image containing the Arabic word for Apple along with the image of the apple is cropped out while the English word Apple is retained.
+
 
 # Instructions
 
 - Open the notebook file in notebooks in Google colab
 - Run the notebook and study the results with accompanying text to illustrate the bias mentioned above
 - If you want to experiment with your own data please upload any additional images with `*.jpg` extension in DATA_DIR, which is `./data`
+
+# Limitations
+
+The following limitations were identified for this analysis: 
+ - In some cases, especially in pictorial languages such as Chinese, a larger English word may translate to a single symbol. In these cases it is possible that the model may prefer the larger English text because it seems more verbose. 
+ - More testing with real world images is required with Latin and non-Latin languages in close proximity. The lack of easy access (or any access) to such images in a labelled public dataset (and the limitations of time) prevented further exploration.
+
 
 
 Citation for Twitter Image Crop Analysis Mode: 
