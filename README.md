@@ -1,4 +1,4 @@
-# Image Crop Analysis
+# Linguistic bias against non-latin languages in Twitter's image cropping model
 
 [![Open All Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/twitter-research/image-crop-analysis) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/twitter-research/image-crop-analysis/HEAD)
 
